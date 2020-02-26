@@ -16,10 +16,9 @@ class Letter
   
   private Point position;  
   private Color couleur;
+  private Font tabFonts;
+  private int idFont;
   private String value;
-  private int life;
-  private int lifeCount;
-  private String fonte;
   
   /**
    * Fonction permettant d'initialiser une nouvelle instance de la classe.
@@ -29,15 +28,29 @@ class Letter
    * @param {intger} size taille du caratère.
    * @memberof Letter
    * */
-  public Letter(String value, String fonte, int size, Function f)
+  public Letter(String value, Function f, int idFont)
   {
-    this.position = new Point(size,f.getRandomIntInclusive(0, height*20/100));
+    this.position = new Point(0, f.DEPLAC);
     this.value = value;
-    this.couleur = new Color(f.getRandomIntInclusive(2, 254), f.getRandomIntInclusive(2, 254), f.getRandomIntInclusive(2, 254));
-    this.life = f.getRandomIntInclusive(20, 60);
-    this.lifeCount = 0;
-    this.fonte = fonte;
+    this.couleur = new Color(f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253));
+    this.idFont = idFont;
+    this.tabFonts = new Font(f);
   }
+  
+public void setColor(Function f)
+{
+  this.couleur = new Color(f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253));
+}
+  
+public void setValue(String val)
+{
+  this.value = val;
+}
+
+public void setFont(Function f)
+{
+  this.idFont = f.getRandomIntInclusive(0,this.tabFonts.getSize()-1);
+}
 
   /**
    * Fonction permettant d'afficher le caractère de la derniére touche appuyée.
@@ -46,13 +59,9 @@ class Letter
    * */
   void draw(Function f)
   {
-    if(this.lifeCount<this.life)
-    {
-      fill(this.couleur.getCol(),float(255-(floor(255/this.life)*this.lifeCount)));
-      textSize(f.getRandomIntInclusive(20, 30));
-      textFont(createFont(this.fonte, 30));
-      text(this.value, this.position.x, this.position.y+(f.DEPLAC*this.lifeCount));
-      this.lifeCount ++;
-    }
+      fill(this.couleur.getCol());
+      textSize(f.DEPLAC);
+      textFont(this.tabFonts.getFont(this.idFont), f.DEPLAC);
+      text(this.value, this.position.x, this.position.y);
   }
 }

@@ -1,9 +1,25 @@
 class Font
 {
     private PFont[] tabFonts;
-    public Font()
+    public Font(Function f)
     {
-      this.tabFonts = new PFont[1];
+      JSONArray jsonFont = loadJSONArray("font/font.json");
+      this.tabFonts = new PFont[jsonFont.size()];
+      for(int i = 0; i < jsonFont.size(); i++)
+      {
+        this.tabFonts[i] = createFont(jsonFont.getJSONObject(i).getString("fontname"), f.DEPLAC);
+      }
       
     }
+    
+    public PFont getFont(int id)
+    {
+      return this.tabFonts[id];
+    }
+    
+    public int getSize()
+    {
+      return this.tabFonts.length;
+    }
+    
 }

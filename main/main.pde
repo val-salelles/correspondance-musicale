@@ -1,19 +1,66 @@
-import processing.sound.*;
 Function f;
+Font font;
+Keys keys;
+boolean clean, pressed;
 
-PFont tabFonts;
 
-void preload()
-{
-  f = new Function();
-  tabFonts = loadFont("font/Akronim/Akronim-regular.ttf");
-}
+
+Letter lettre;
 
 void setup()
 {
   //fullScreen();
+  size(500,500);
   background(255);
-  textFont(tabFonts);
-  textSize(30);
-  text("test",40,40);
+  f = new Function();
+  keys = new Keys();
+  clean = false;
+  pressed = false;
+  lettre = new Letter("",f,0);
+}
+
+void draw()
+{
+  if(pressed) 
+  {
+    if(keyCode != 16)
+    {
+      lettre.draw(f);
+      if(clean)
+      {
+        background(255);
+        clean = false;
+      }
+    }
+    delay(100);
+    pressed = false;
+  }
+}
+
+void keyPressed() 
+{
+   pressed = true;
+   lettre.setColor(f);
+   lettre.setFont(f);
+   if(keyCode != 16)
+    {
+       if(keys.isValidKey(key+""))
+       {
+          lettre.setValue(key+"");
+          if(width - (2 * f.DEPLAC) < lettre.position.getX())
+           {
+             lettre.position.setX(f.DEPLAC);
+             lettre.position.setY(lettre.position.getY()+f.DEPLAC);
+           }
+           else
+           {
+             lettre.position.setX(lettre.position.getX()+f.DEPLAC);
+           }
+           if(height - f.DEPLAC < lettre.position.getY())
+           {
+             lettre.position.setY(f.DEPLAC);
+             clean = true;
+           }
+       }
+    }
 }
