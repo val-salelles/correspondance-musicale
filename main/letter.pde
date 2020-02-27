@@ -17,6 +17,7 @@ class Letter
   private Point position;  
   private Color couleur;
   private Font tabFonts;
+  private Sound son;
   private int idFont;
   private String value;
   
@@ -35,6 +36,7 @@ class Letter
     this.couleur = new Color(f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253), f.getRandomIntInclusive(0, 253));
     this.idFont = idFont;
     this.tabFonts = new Font(f);
+    son = new Sound();
   }
   
 public void setColor(Function f)
@@ -57,8 +59,9 @@ public void setFont(Function f)
    * @func draw
    * @memberof Letter
    * */
-  void draw(Function f)
+  void draw(Function f,PApplet parent, Keys ks)
   {
+      son.analysedKey(this.value,parent,ks);
       fill(this.couleur.getCol());
       textSize(f.DEPLAC);
       textFont(this.tabFonts.getFont(this.idFont), f.DEPLAC);

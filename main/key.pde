@@ -9,10 +9,9 @@
 class Keys
 {
 
-  private String[] tabKeys;
+  private ArrayList<String> tabKeys;
   private boolean isComplete = false;
-  private int sizeTabKey;
-  
+  private int maxSize;
  /**
   * Fonction permettantd"initialiser une nouvelle instance de la classe.
   * @func constructor
@@ -21,9 +20,8 @@ class Keys
   * */
   public Keys()
   {
-    this.sizeTabKey = 2;
-    this.tabKeys = new String[this.sizeTabKey];
-    this.isComplete = false;
+    this.maxSize = 26;
+    this.tabKeys = new ArrayList<String>();
   }
 
   /**
@@ -36,17 +34,11 @@ class Keys
   {
     if(this.isAlpha(k)|| this.isNumber(k))
     {
-      if(this.isComplete)
+      if(this.tabKeys.size() >= this.maxSize)
       {
-        this.tabKeys[0] = this.tabKeys[1];
-        this.tabKeys[1] = k;
+        this.tabKeys.clear();
       }
-      else
-      {
-        this.isComplete = true;
-        this.tabKeys[0] = k;
-        this.tabKeys[1] = k;
-      }
+      this.tabKeys.add(k);
     }
   }
   
@@ -62,17 +54,17 @@ class Keys
   * @memberof Keys
   * @return {boolean} retourne un booléen.
   * */
-  public boolean isAlpha(String keyl)
+  public boolean isAlpha(String k)
   {
-    if(match(keyl,"[A-Z a-z]") != null)
+    if(match(k,"[A-Z a-z]") != null)
       return true;
     
     return false;
   }
   
-  public boolean isNumber(String keyl)
+  public boolean isNumber(String k)
   {
-    if(match(keyl,"[0-9]") != null)
+    if(match(k,"[0-9]") != null)
       return true;
     
     return false;
@@ -84,11 +76,11 @@ class Keys
    * @memberof Keys
    * @return {boolean} retourne un booléen.
    * */
-  public boolean isVoyelle()
+  public boolean isVoyelle(int id)
   {
    
-    if(this.isNumber(this.tabKeys[0]))
-      if(match(this.tabKeys[0],"[A E I O U Y a e i o u y]") != null)
+    if(this.isNumber(this.tabKeys.get(id)))
+      if(match(this.tabKeys.get(id),"[A E I O U Y a e i o u y]") != null)
         return true;
 
     return false;
@@ -100,10 +92,10 @@ class Keys
   * @memberof Keys
   * @return {boolean} retourne un booléen.
   * */
-  public boolean isPair()
+  public boolean isPair(int id)
   {
-    if(this.isNumber(this.tabKeys[0]))
-      if(int(Float.parseFloat(this.tabKeys[0])%2) == 0)
+    if(this.isNumber(this.tabKeys.get(id)))
+      if(int(Float.parseFloat(this.tabKeys.get(id))%2) == 0)
         return true;
         
     return false;

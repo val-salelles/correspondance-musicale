@@ -1,35 +1,41 @@
 import processing.sound.*;
-
+import java.util.Arrays;
 class Sound
 {
   private SoundFile file;
-  private String[] alphabet;
+  private ArrayList<String> alphabet;
   public Sound()
   {
-    this.alphabet = new String[36];
-    String [] tmpalphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z","0","1","2","3","4","5","6","7","8","9"};
-    for(int i = 0; i < tmpalphabet.length;i++)
-      this.alphabet[i] = tmpalphabet[i]; 
+    this.alphabet = new ArrayList<String>();
+    this.alphabet.addAll(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"));
   }
   
   public void analysedKey(String k, PApplet parent, Keys ks)
   {
-    for(int i = 0; i < this.alphabet.length; i++)
+    this.file = null;
+    
+    for(int i = 0; i < this.alphabet.size(); i++)
     {
-      if(ks.isAlpha(k))
-        if(k == this.alphabet[i] || k == this.alphabet[i].toUpperCase())
+      if(ks.isAlpha(k) && (k.equals(this.alphabet.get(i)) || k.equals(this.alphabet.get(i).toUpperCase())))
         {
-          file = new SoundFile(parent,"son/"+this.alphabet[i]+".wav");
-          break;
+          this.file = new SoundFile(parent,"son/"+this.alphabet.get(i)+".mp3");
         }
       else
-        if(k == this.alphabet[i])
+      {
+        if(k.equals(this.alphabet.get(i)))
         {
-          file = new SoundFile(parent,"son/"+this.alphabet[i]+".wav");
+          this.file = new SoundFile(parent,"son/"+this.alphabet.get(i)+".mp3");
+        } 
+      }
+        
+        if(file != null)
+        {
+          file.play(1,1.0);
           break;
-        }     
+        }
     }
-    file.play();
+    
+    
   }
   
 }

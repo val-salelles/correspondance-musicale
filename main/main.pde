@@ -1,10 +1,6 @@
 Function f;
-Font font;
 Keys keys;
 boolean clean, pressed;
-
-
-
 Letter lettre;
 
 void setup()
@@ -25,7 +21,7 @@ void draw()
   {
     if(keyCode != 16)
     {
-      lettre.draw(f);
+      lettre.draw(f,this,keys);
       if(clean)
       {
         background(255);
