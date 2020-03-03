@@ -4,7 +4,6 @@
  * @property {integer} x Coordonnée x du point
  * @property {integer} y Coordonnée y du point
  * */
-
 class Point
 {
   

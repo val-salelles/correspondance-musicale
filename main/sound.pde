@@ -1,41 +1,105 @@
 import processing.sound.*;
-import java.util.Arrays;
+
 class Sound
 {
   private SoundFile file;
-  private ArrayList<String> alphabet;
-  public Sound()
+  private Delay d;
+  private Reverb r;
+  private float pan;
+  private boolean bypassEffect;
+  private Presset effectPresset;
+  private String name;
+  private boolean isAlpha;
+  
+  public Sound(String name, boolean isAlpha, boolean bypassEffect, float pan)
   {
-    this.alphabet = new ArrayList<String>();
-    this.alphabet.addAll(Arrays.asList("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"));
+    this.pan = pan;
+    this.bypassEffect = bypassEffect;
+    this.name = name;
+    this.isAlpha = isAlpha;
+    this.bypassEffect = bypassEffect;
   }
   
-  public void analysedKey(String k, PApplet parent, Keys ks)
+  public <U extends Presset> void setEffect(U effect)
   {
-    this.file = null;
-    
-    for(int i = 0; i < this.alphabet.size(); i++)
+    try
     {
-      if(ks.isAlpha(k) && (k.equals(this.alphabet.get(i)) || k.equals(this.alphabet.get(i).toUpperCase())))
-        {
-          this.file = new SoundFile(parent,"son/"+this.alphabet.get(i)+".mp3");
-        }
+      if(split(effect.getClass()+"", '$')[1].equals("DelayPresset"))
+      {
+         this.effectPresset = new DelayPresset(((DelayPresset)effect).getFeedback(),((DelayPresset)effect).getTime(),((DelayPresset)effect).getMaxTime());
+      }
+      else if(split(effect.getClass()+"", '$')[1].equals("ReverbPresset"))
+      {
+         this.effectPresset = new ReverbPresset(((ReverbPresset)effect).getRoom(),((ReverbPresset)effect).getDamp(),((ReverbPresset)effect).getWet());
+      }
       else
       {
-        if(k.equals(this.alphabet.get(i)))
-        {
-          this.file = new SoundFile(parent,"son/"+this.alphabet.get(i)+".mp3");
-        } 
+        throw new Exception("La classe de effect ne correspond à aucune ");
       }
-        
-        if(file != null)
+    }
+    catch(Exception e)
+    {
+      println(e.getMessage());
+    }  
+  }
+  
+  public boolean getBypassEffect()
+  {
+    return this.bypassEffect;
+  }
+  
+  public void playSound(PApplet parent)
+  {
+    this.file = null;
+    if(!name.equals(" "))
+    {
+      if(this.isAlpha)
         {
-          file.play(1,1.0);
-          break;
+          this.file = new SoundFile(parent,"son/"+name.toLowerCase()+".mp3");
+        }
+        else
+        {
+            this.file = new SoundFile(parent,"son/"+name+".mp3");
         }
     }
-    
-    
+      
+    if(file != null)
+    {
+      if(file.channels() <2)
+        file.pan(this.pan);
+      
+      if(!this.bypassEffect)
+      {
+        if(this.effectPresset.getIsOn())
+        {
+          if(split(this.effectPresset.getClass()+"", '$')[1].equals("DelayPresset"))
+          {
+             //println("Delay");
+             d = new Delay(parent);
+             d.set(((DelayPresset) this.effectPresset).getTime(),((DelayPresset) this.effectPresset).getFeedback());
+             d.process(this.file,((DelayPresset) this.effectPresset).getMaxTime()); 
+          }
+          
+          if(split(this.effectPresset.getClass()+"", '$')[1].equals("ReverbPresset"))
+          {
+            //println("Reverb");
+            r = new Reverb(parent);
+            r.set(((ReverbPresset) this.effectPresset).getRoom(),((ReverbPresset) this.effectPresset).getDamp(),((ReverbPresset) this.effectPresset).getWet());
+            r.process(this.file);
+          }
+        }
+      }
+      this.file.play(1,1.0);
+    }
+  }
+  
+  public boolean onEnded()
+  {
+    if(this.file != null)
+    {
+      return !this.file.isPlaying();
+    }
+    return false;  
   }
   
 }

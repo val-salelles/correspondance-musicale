@@ -1,62 +1,98 @@
-Function f;
 Keys keys;
-boolean clean, pressed;
-Letter lettre;
-
+ArrayList<Sound> sons;
+Caractere caractere;
+float pan = 0;
+boolean bypassEffect; 
 void setup()
 {
   //fullScreen();
   size(500,500);
   background(255);
-  f = new Function();
+  caractere = new Caractere();
+  sons = new ArrayList<Sound>();
   keys = new Keys();
-  clean = false;
-  pressed = false;
-  lettre = new Letter("",f,0);
+  bypassEffect = true;
+  pan = 0; 
 }
 
 void draw()
 {
-  if(pressed) 
-  {
-    if(keyCode != 16)
+  if(keys.getPressed()) 
     {
-      lettre.draw(f,this,keys);
-      if(clean)
+      if(keyCode != 16 && caractere.isValidKey())
       {
-        background(255);
-        clean = false;
+        if(keys.getClean())
+        {
+          background(255);
+          keys.offClean();
+        }
+        caractere.draw();
+        sons.get(sons.size()-1).playSound(this);
       }
+      keys.offPressed();
     }
-    delay(100);
-    pressed = false;
-  }
+    
+    if(!sons.isEmpty())
+      removeEndedSound();
 }
 
 void keyPressed() 
 {
-   pressed = true;
-   lettre.setColor(f);
-   lettre.setFont(f);
-   if(keyCode != 16)
+  //println(key+" "+keyCode);
+  //println(son.getBypassEffect());
+  if(keyCode != 16 && keyCode != UP && keyCode != LEFT && keyCode != RIGHT)
     {
-       if(keys.isValidKey(key+""))
-       {
-          lettre.setValue(key+"");
-          if(width - (2 * f.DEPLAC) < lettre.position.getX())
+       caractere.setValue(key+"");
+       if(caractere.isValidKey())
+       { 
+          caractere.setColor();
+          caractere.setFont();
+          keys.addKey(caractere.getValue());
+          keys.onPressed();
+          sons.add(new Sound(caractere.getValue(), caractere.isAlpha(),bypassEffect,pan));
+          
+          if(!sons.get(sons.size()-1).getBypassEffect())
            {
-             lettre.position.setX(f.DEPLAC);
-             lettre.position.setY(lettre.position.getY()+f.DEPLAC);
+             sons.get(sons.size()-1).setEffect(keys.getEffect());
+           }
+          if(width - (2 * Function.DEPLAC) < caractere.getPos().getX())
+           {
+             caractere.getPos().setX(Function.DEPLAC);
+             caractere.getPos().setY(caractere.getPos().getY()+ Function.DEPLAC);
            }
            else
            {
-             lettre.position.setX(lettre.position.getX()+f.DEPLAC);
+             caractere.getPos().setX(caractere.getPos().getX()+ Function.DEPLAC);
            }
-           if(height - f.DEPLAC < lettre.position.getY())
+           
+           if(height - Function.DEPLAC < caractere.getPos().getY())
            {
-             lettre.position.setY(f.DEPLAC);
-             clean = true;
+             caractere.getPos().setY(Function.DEPLAC);
+             keys.onClean();
            }
        }
     }
+    
+    if(keyCode == UP)
+      pan = 0;
+
+    if(keyCode == LEFT)
+      pan = 1;
+    
+    if(keyCode == RIGHT)
+      pan = -1;
+      
+    if(keyCode == ENTER)
+      bypassEffect = !bypassEffect;
+}
+
+void removeEndedSound()
+{
+  ArrayList<Sound> tmp = new ArrayList<Sound>();
+  for(Sound s : sons)
+    {
+      if(s.onEnded())
+        tmp.add(s);
+    }
+    sons.removeAll(tmp);
 }

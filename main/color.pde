@@ -4,7 +4,21 @@ class Color
   private int v;
   private int b;
   
+  public Color()
+  {
+    this.r = 0;
+    this.v = 0;
+    this.b = 0;
+  }
+  
   public Color(int r, int v, int b)
+  {
+    this.r = r;
+    this.v = v;
+    this.b = b;
+  }
+  
+  public void setValue(int r, int v, int b)
   {
     this.r = r;
     this.v = v;
