@@ -47,16 +47,31 @@ Il est donc possible de les remplacer, d'en ajouter et d'en supprimer. Toutefois
 
 Pour ajouter une police de caractères, il faut effectuer dans l'ordre les opérations ci-dessous:
 * copier le dossier de la nouvelle police de caractère dans le dossier correspondance-musicale/main/data/font
-* ajouter la ligne suivante dans le fichier correspondance-musicale/main/data/font/font.json en remplaçant nomFonte par le nom de la police de caractères avec son extension à la fin du fichier et pathfont par le nom du dossier ouù est la police de caractère. En voici un exemple à partir du fichier d'origine: <pre><code>[<br/> {<br/>"fontname":"font/Akronim/Akronim-Regular.ttf"<br/>},<br/>{<br/>"fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"<br/>},<br/>{<br/>"fontname":"font/Lacquer/Lacquer-Regular.ttf"<br/>},<br/>{<br/>"fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"<br/>}<b>,{<br/>"fontname":"font/pathfont/nomFonte"<br/>}</b> <br/>]</code></pre>
+* ajouter la ligne suivante dans le fichier correspondance-musicale/main/data/font/font.json en remplaçant nomFonte par le nom de la police de caractères avec son extension à la fin du fichier et pathfont par le nom du dossier ouù est la police de caractère. En voici un exemple à partir du fichier d'origine: <pre><code>[ 
+        {
+            "fontname":"font/Akronim/Akronim-Regular.ttf"
+        },
+        {
+            "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
+        },
+        {
+            "fontname":"font/Lacquer/Lacquer-Regular.ttf"
+        },
+        {
+            "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
+        }
+    <b>,{
+        "fontname":"font/pathfont/nomFonte"
+        }
+    </b>
+    ]</code></pre>
 
 
 Pour supprimer une police de caractères, il faut effectuer dans l'ordre les opérations ci-dessous:
 * supprimer le dossier de la police de caractère dans le dossier correspondance-musicale/main/data/font
-* supprimmer la ligne (exemple : <pre><code> 
-{
+* supprimmer la ligne (exemple : <pre><code>{
 	"fontname":"font/Akronim/Akronim-Regular.ttf" 
-}, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple: 
-<pre> <code>[
+}, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple: <pre> <code>[
     {
         "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
     },
