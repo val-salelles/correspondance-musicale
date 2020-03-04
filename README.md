@@ -22,8 +22,9 @@ nom.ext
     * mp3 
     * wav
     * aif
-    
-(je vous recommande d'utiliser les deux premières)
+
+
+</p>(je vous recommande d'utiliser les deux premières valeurs)<p>
 Une fois que vous avez l'ensemble de vos sons (soit 37 sons) vous pouvez supprimmer l'ensemble des fichier du dossier correspondance-musicale/main/data/son execpté le fichier extension.json
 
 Enfin il vous faudra modifier le fichier extension.json qui est dans le même dossier en remplaçant la valeur du champ "extension" par la valeur que vous aurez choisit
