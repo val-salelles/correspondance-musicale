@@ -51,8 +51,7 @@ Il est donc possible de les remplacer, d'en ajouter et d'en supprimer. Toutefois
 
 Pour ajouter une police de caractères, il faut effectuer dans l'ordre les opérations ci-dessous:
 * copier le dossier de la nouvelle police de caractère dans le dossier correspondance-musicale/main/data/font
-* ajouter la ligne suivante dans le fichier correspondance-musicale/main/data/font/font.json en remplaçant nomFonte par le nom de la police de caractères avec son extension à la fin du fichier et pathfont par le nom du dossier ouù est la police de caractère. En voici un exemple à partir du fichier d'origine:
-<pre>
+* ajouter la ligne suivante dans le fichier correspondance-musicale/main/data/font/font.json en remplaçant nomFonte par le nom de la police de caractères avec son extension à la fin du fichier et pathfont par le nom du dossier ouù est la police de caractère. En voici un exemple à partir du fichier d'origine: <pre>
 <code>
 [
     {
@@ -80,8 +79,7 @@ Pour supprimer une police de caractères, il faut effectuer dans l'ordre les op�
 * supprimmer la ligne (exemple : <pre><code> 
 {
 	"fontname":"font/Akronim/Akronim-Regular.ttf" 
-}, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple:
-<pre>
+}, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple: <pre>
 <code>
 [
     {
