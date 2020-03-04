@@ -15,7 +15,7 @@ Version 1
 Modification de la banque de son
 --------------------------------
 
-Les sons proposés avec le logiciel servent uniquement d'exemple. il est donc possible de les remplacer par d'autre en suivant la nomenclature ci-dessous:
+Les sons proposés avec le logiciel servent uniquement d'exemple. il est donc possible de les remplacer par d'autre en suivant la nomenclature ci-dessous :<br/>
 nom.ext 
 * avec nom remplacé soit par espace, soit par une des 26 lettres de l'alphabet ou soit par un chiffre comprit dans l'intervalle [0, 9] 
 * avec ext remplacé par l'extension de votre choix entre ces valeurs : 
