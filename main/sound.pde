@@ -52,21 +52,22 @@ class Sound
   **/
   public void playSound(PApplet parent)
   {
+    String ext = loadJSONObject("son/extension.json").getString("extension");
     this.file = null;
     if(!name.equals(" "))
     {
       if(this.isAlpha)
         {
-          this.file = new SoundFile(parent,"son/"+name.toLowerCase()+".mp3");
+          this.file = new SoundFile(parent,"son/"+name.toLowerCase()+"."+ext);
         }
         else
         {
-            this.file = new SoundFile(parent,"son/"+name+".mp3");
+            this.file = new SoundFile(parent,"son/"+name+"."+ext);
         }
     }
     else
     {
-      this.file = new SoundFile(parent,"son/espace.mp3");
+      this.file = new SoundFile(parent,"son/espace."+ext);
     }
       
     if(file != null)
