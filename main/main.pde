@@ -2,7 +2,7 @@ Keys keys;
 ArrayList<Sound> sons;
 Caractere caractere;
 float pan = 0;
-boolean bypassEffect; 
+
 void setup()
 {
   //fullScreen();
@@ -11,7 +11,6 @@ void setup()
   caractere = new Caractere();
   sons = new ArrayList<Sound>();
   keys = new Keys();
-  bypassEffect = true;
   pan = 0; 
 }
 
@@ -49,12 +48,8 @@ void keyPressed()
           caractere.setFont();
           keys.addKey(caractere.getValue());
           keys.onPressed();
-          sons.add(new Sound(caractere.getValue(), caractere.isAlpha(),bypassEffect,pan));
+          sons.add(new Sound(caractere.getValue(), caractere.isAlpha(),pan));
           
-          if(!sons.get(sons.size()-1).getBypassEffect())
-           {
-             sons.get(sons.size()-1).setEffect(keys.getEffect());
-           }
           if(width - (2 * Function.DEPLAC) < caractere.getPos().getX())
            {
              caractere.getPos().setX(Function.DEPLAC);
@@ -81,18 +76,22 @@ void keyPressed()
     
     if(keyCode == RIGHT)
       pan = -1;
-      
-    if(keyCode == ENTER)
-      bypassEffect = !bypassEffect;
 }
 
 void removeEndedSound()
 {
-  ArrayList<Sound> tmp = new ArrayList<Sound>();
-  for(Sound s : sons)
-    {
-      if(s.onEnded())
-        tmp.add(s);
-    }
-    sons.removeAll(tmp);
+  if(!sons.isEmpty())
+  {
+    ArrayList<Sound> tmp = new ArrayList<Sound>();
+    for(Sound s : sons)
+      {
+        if(s.onEnded())
+          tmp.add(s);
+      }
+      
+     if(!tmp.isEmpty())
+      {
+        sons.removeAll(tmp);
+      }
+  }
 }
