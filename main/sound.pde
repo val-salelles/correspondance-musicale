@@ -28,6 +28,10 @@ class Sound
             this.file = new SoundFile(parent,"son/"+name+".mp3");
         }
     }
+    else
+    {
+      this.file = new SoundFile(parent,"son/espace.mp3");
+    }
       
     if(file != null)
     {
