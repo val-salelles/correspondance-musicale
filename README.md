@@ -55,21 +55,21 @@ Pour ajouter une police de caractères, il faut effectuer dans l'ordre les opér
   <pre>
   <code>
     [
-	{
-	 	"fontname":"font/Akronim/Akronim-Regular.ttf"
-	},
-	{
-		"fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
-	},
-	{
-		"fontname":"font/Lacquer/Lacquer-Regular.ttf"
-	},
-	{
-		"fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
-	}<b>,
-    {
-        "fontname":"font/pathfont/nomFonte"
-    }</b>
+        {
+            "fontname":"font/Akronim/Akronim-Regular.ttf"
+        },
+        {
+            "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
+        },
+        {
+            "fontname":"font/Lacquer/Lacquer-Regular.ttf"
+        },
+        {
+            "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
+        }<b>,
+        {
+            "fontname":"font/pathfont/nomFonte"
+        }</b>
     ]
   </code>
   </pre>
@@ -84,15 +84,15 @@ Pour supprimer une police de caractères, il faut effectuer dans l'ordre les op�
   <pre>
   <code>
     [
-	{
-		"fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
-	},
-	{
-		"fontname":"font/Lacquer/Lacquer-Regular.ttf"
-	},
-	{
-		"fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
-	}
-    <b>
+        {
+            "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
+        },
+        {
+            "fontname":"font/Lacquer/Lacquer-Regular.ttf"
+        },
+        {
+            "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
+        }
+    ]
   </code>
   </pre>
