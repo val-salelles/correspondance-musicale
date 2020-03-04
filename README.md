@@ -52,27 +52,27 @@ Il est donc possible de les remplacer, d'en ajouter et d'en supprimer. Toutefois
 Pour ajouter une police de caractères, il faut effectuer dans l'ordre les opérations ci-dessous:
 * copier le dossier de la nouvelle police de caractère dans le dossier correspondance-musicale/main/data/font
 * ajouter la ligne suivante dans le fichier correspondance-musicale/main/data/font/font.json en remplaçant nomFonte par le nom de la police de caractères avec son extension à la fin du fichier et pathfont par le nom du dossier ouù est la police de caractère. En voici un exemple à partir du fichier d'origine:
-  <pre>
-  <code>
-    [
-        {
-            "fontname":"font/Akronim/Akronim-Regular.ttf"
-        },
-        {
-            "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
-        },
-        {
-            "fontname":"font/Lacquer/Lacquer-Regular.ttf"
-        },
-        {
-            "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
-        }<b>,
-        {
-            "fontname":"font/pathfont/nomFonte"
-        }</b>
-    ]
-  </code>
-  </pre>
+<pre>
+<code>
+[
+    {
+        "fontname":"font/Akronim/Akronim-Regular.ttf"
+    },
+    {
+        "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
+    },
+    {
+        "fontname":"font/Lacquer/Lacquer-Regular.ttf"
+    },
+    {
+        "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
+    }<b>,
+    {
+        "fontname":"font/pathfont/nomFonte"
+    }</b>
+]
+</code>
+</pre>
 
 
 Pour supprimer une police de caractères, il faut effectuer dans l'ordre les opérations ci-dessous:
@@ -81,18 +81,18 @@ Pour supprimer une police de caractères, il faut effectuer dans l'ordre les op�
 {
 	"fontname":"font/Akronim/Akronim-Regular.ttf" 
 }, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple:
-  <pre>
-  <code>
-    [
-        {
-            "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
-        },
-        {
-            "fontname":"font/Lacquer/Lacquer-Regular.ttf"
-        },
-        {
-            "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
-        }
-    ]
-  </code>
-  </pre>
+<pre>
+<code>
+[
+    {
+        "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
+    },
+    {
+        "fontname":"font/Lacquer/Lacquer-Regular.ttf"
+    },
+    {
+        "fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
+    }
+]
+</code>
+</pre>
