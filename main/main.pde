@@ -5,8 +5,8 @@ float pan = 0;
 
 void setup()
 {
-  //fullScreen();
-  size(500,500);
+  fullScreen();
+  //size(500,500);
   background(255);
   sons = new ArrayList<Sound>();
   caractere = new Caractere();
