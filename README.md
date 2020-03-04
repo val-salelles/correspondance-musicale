@@ -66,9 +66,8 @@ Pour ajouter une police de caractères, il faut effectuer dans l'ordre les opér
 	},
 	{
 		"fontname":"font/Trade_Winds/TradeWinds-Regular.ttf"
-	}
-    <b>
-    ,{
+	}<b>,
+    {
         "fontname":"font/pathfont/nomFonte"
     }</b>
     ]
