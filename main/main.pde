@@ -1,4 +1,4 @@
-Keys keys;
+boolean pressed = false, clean = false;
 ArrayList<Sound> sons;
 Caractere caractere;
 float pan = 0;
@@ -8,27 +8,26 @@ void setup()
   //fullScreen();
   size(500,500);
   background(255);
-  caractere = new Caractere();
   sons = new ArrayList<Sound>();
-  keys = new Keys();
+  caractere = new Caractere();
   pan = 0; 
 }
 
 void draw()
 {
-  if(keys.getPressed()) 
+  if(pressed) 
     {
       if(keyCode != 16 && caractere.isValidKey())
       {
-        if(keys.getClean())
+        if(clean)
         {
           background(255);
-          keys.offClean();
+          clean = false;
         }
         caractere.draw();
         sons.get(sons.size()-1).playSound(this);
       }
-      keys.offPressed();
+      pressed = false;
     }
     
     if(!sons.isEmpty())
@@ -37,17 +36,13 @@ void draw()
 
 void keyPressed() 
 {
-  //println(key+" "+keyCode);
-  //println(son.getBypassEffect());
   if(keyCode != 16 && keyCode != UP && keyCode != LEFT && keyCode != RIGHT)
     {
        caractere.setValue(key+"");
        if(caractere.isValidKey())
        { 
-          caractere.setColor();
-          caractere.setFont();
-          keys.addKey(caractere.getValue());
-          keys.onPressed();
+          caractere.setCouleur();
+          pressed = true;
           sons.add(new Sound(caractere.getValue(), caractere.isAlpha(),pan));
           
           if(width - (2 * Function.DEPLAC) < caractere.getPos().getX())
@@ -63,7 +58,7 @@ void keyPressed()
            if(height - Function.DEPLAC < caractere.getPos().getY())
            {
              caractere.getPos().setY(Function.DEPLAC);
-             keys.onClean();
+             clean = true;
            }
        }
     }

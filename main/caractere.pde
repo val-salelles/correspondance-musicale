@@ -1,48 +1,74 @@
+/**
+* @author Valentin Salelles
+* @version 1
+* @since 1
+* @see Lettre
+* @see Font
+* @see Color
+* Classe permettant de gérer les couleurs.
+**/
 class Caractere extends Lettre
 {
+  
+  /**
+  * @since 1
+  * Position du caractère dans la fenêtre d'affichage
+  **/
   private Point position;  
+  
+  /**
+  * @since 1
+  * Couleur d'affichage du caractère
+  **/
   private Color couleur;
-  private Font tabFonts;
-  private int idFont;
   
-  public Caractere(String k)
-  {
-    super(k);
-    this.position = new Point(0, Function.DEPLAC);
-    this.couleur = new Color();
-    this.idFont = 0;
-    this.tabFonts = new Font();
-  }
+  /**
+  * @since 1
+  * Tableau des polices de caractères.
+  **/
+  private Font tabFont;
   
+  /**
+  * @since 1
+  * Constructeur de la classe
+  **/
   public Caractere()
   {
-    super();
+    super("");
     this.position = new Point(0, Function.DEPLAC);
     this.couleur = new Color();
-    this.idFont = 0;
-    this.tabFonts = new Font();
+    this.tabFont = new Font();
+    this.couleur.setAleaColor();
   }
   
-  public void setFont()
+  /**
+  * @since 1
+  * Méthode permettant de mettre à jour la couleur du caratère
+  **/
+  public void setCouleur()
   {
-    this.idFont = Function.getRandomIntInclusive(0,this.tabFonts.getSize()-1);
+    this.couleur.setAleaColor();
   }
   
-  public void setColor()
-  {
-    this.couleur.setValue(Function.getRandomIntInclusive(0, 253), Function.getRandomIntInclusive(0, 253), Function.getRandomIntInclusive(0, 253));
-  }
-  
+  /**
+  * @since 1
+  * @return Retourne un point
+  * Getter de l'attribut position
+  **/
   public Point getPos()
   {
     return this.position;
   }
   
+  /**
+  * @since 1
+  * Méthode permettant l'affichage du caratère.
+  **/
   public void draw()
   {
       fill(this.couleur.getCol());
       textSize(Function.DEPLAC);
-      textFont(this.tabFonts.getFont(this.idFont), Function.DEPLAC);
+      textFont(this.tabFont.getAleaFont(), Function.DEPLAC);
       text(this.value, this.position.x, this.position.y);
   }
 }
