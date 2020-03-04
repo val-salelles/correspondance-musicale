@@ -71,8 +71,7 @@ Pour supprimer une police de caractères, il faut effectuer dans l'ordre les op�
 * supprimer le dossier de la police de caractère dans le dossier correspondance-musicale/main/data/font
 * supprimmer la ligne (exemple : <pre><code>{
 	"fontname":"font/Akronim/Akronim-Regular.ttf" 
-}, </code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple : <pre><code>
-[
+},</code></pre>) dans le fichier correspondance-musicale/main/data/font/font.json correspondant à la police de caractère que vous souhaitez supprimer. Voici Le résultat après supression de la ligne d'exemple : <pre><code>[
     {
         "fontname":"font/Indie_Flower/IndieFlower-Regular.ttf"
     },
